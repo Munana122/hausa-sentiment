@@ -2,7 +2,7 @@ from datasets import load_dataset
 
 
 def load_splits(lang="hau"):
-    return load_dataset("HausaNLP/NaijaSenti-Twitter", lang)
+    return load_dataset("HausaNLP/NaijaSenti-Twitter", lang, trust_remote_code=True)
 
 
 def label_names(ds):
