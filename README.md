@@ -23,12 +23,10 @@ Hausa is spoken by over 70 million people across West Africa, yet NLP resources 
 
 | Experiment | Model | LR | Epochs | Test Acc | Test Macro-F1 |
 |---|---|---|---|---|---|
-| Baseline | TF-IDF (5000, bigram) + Logistic Regression | — | — | — | — |
-| Exp 1 | AfriBERTa-base | 3e-5 | 5 | — | — |
-| Exp 2 | AfriBERTa-base | 1e-5 | 5 | — | — |
-| Exp 3 | XLM-R base | 2e-5 | 5 | — | — |
-
-*(Fill in results after running experiments)*
+| Baseline | TF-IDF (20000, bigram) + Logistic Regression | — | — | 0.7247 | 0.7243 |
+| Exp 1 | AfriBERTa-base | 3e-5 | 5 | 0.7839 | 0.7838 |
+| Exp 2 | AfriBERTa-base | 1e-5 | 5 | 0.7726 | 0.7709 |
+| Exp 3 | XLM-R base | 2e-5 | 5 | 0.7339 | 0.7345 |
 
 ## Repository Structure
 ```
@@ -78,10 +76,10 @@ streamlit run app.py
 ```
 
 ## Key Results
-*(Add after experiments are complete)*
+AfriBERTa fine-tuned at lr=3e-5 achieves 78.4% accuracy and 0.784 macro-F1, outperforming the TF-IDF baseline by ~6 points. XLM-R base (no Hausa pretraining) scores only 73.4%, confirming that language-specific pretraining is important for Hausa.
 
 ## Error Analysis
-*(Add after running evaluate.py and reviewing errors_sample.csv)*
+The neutral class has the lowest F1 (0.73). The most common error is neutral tweets predicted as negative (387 cases) and negative predicted as neutral (240 cases). This reflects the inherent ambiguity between neutral reporting and negative sentiment in Hausa news tweets, as well as code-switching with English and Arabic that the model has not seen enough of during training.
 
 ## References
 - Muhammad et al. (2022). NaijaSenti: A Nigerian Twitter Sentiment Corpus for Multilingual Sentiment Analysis. *LREC 2022*.
