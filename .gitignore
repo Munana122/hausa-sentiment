@@ -1,0 +1,10 @@
+runs/
+models/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+errors_sample.csv
+correct_sample.csv
+*.safetensors
+*.bin
+.env

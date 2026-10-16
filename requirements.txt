@@ -1,0 +1,7 @@
+datasets
+transformers
+accelerate
+scikit-learn
+pandas
+sentencepiece
+torch
