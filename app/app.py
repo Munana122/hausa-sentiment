@@ -1,7 +1,7 @@
 import streamlit as st
 from transformers import pipeline
 
-MODEL_REPO = "YOUR_USERNAME/hausa-sentiment-afriberta"
+MODEL_REPO = "Merveille123/hausa-sentiment-afriberta"
 
 
 @st.cache_resource(show_spinner="Loading model...")
