@@ -1,16 +1,14 @@
 # Hausa Tweet Sentiment Classification
 
-A sentiment classifier (**positive / neutral / negative**) for Hausa tweets. I fine-tuned **AfriBERTa** on the Hausa part of **NaijaSenti**, compared it with a **TF-IDF baseline** and **XLM-R base**, and put the best model behind a small web app.
+A sentiment classifier (**positive/neutral/negative**) for Hausa tweets. I fine-tuned **AfriBERTa** on the Hausa part of **NaijaSenti**, compared it with a **TF-IDF baseline** and **XLM-R base**, and put the best model behind a small web app.
 
 This is my individual capstone project for Machine Learning Techniques I (ALU, 2026 September term), task type: **text classification for an African language**.
 
 ## Links
 
-- **GitHub repository:** this repo
-- **Live app (Hugging Face Space):** [add link]
+- **Live app (Hugging Face Space):**  https://github.com/Munana122/hausa-sentiment
 - **Fine-tuned model:** https://huggingface.co/Merveille123/hausa-sentiment-afriberta
-- **Demo video:** [add link]
-- **Report (PDF):** [add link or file name]
+- **Demo video:** https://youtu.be/9q0DRn-ZsLI
 
 ## Results at a glance
 
@@ -52,7 +50,7 @@ The classes are balanced (32 to 35% each), so accuracy is not distorted by a big
 
 **Preprocessing.** I kept it minimal. The baseline uses scikit-learn's default tokenisation and lowercasing. The Transformers use their own SentencePiece tokenisers with truncation at 128 tokens. I left handles (`@user`), emojis and spelling alone, because they may carry sentiment and I did not want to impose my own rules on Hausa spelling.
 
-**Known problems with the data.** Tweets are informal, spelling varies, and English words are mixed in. The **neutral label is the most subjective one**. I did not measure annotator agreement and I did not check for duplicate tweets across splits.
+**Known problems with the data.** Tweets are informal, spelling varies, and English words are mixed in. The **neutral label is the most subjective one**. I did not measure annotator agreement, and I did not check for duplicate tweets across splits.
 
 ## Methods
 
@@ -63,9 +61,9 @@ The classes are balanced (32 to 35% each), so accuracy is not distorted by a big
 - **AfriBERTa base** (`castorini/afriberta_base`): 8 layers, about 111M parameters, pretrained on 11 African languages including Hausa.
 - **XLM-R base** (`xlm-roberta-base`): pretrained on 100 languages (Hausa is one of them, with much less data than the big languages).
 
-Each tweet is tokenised and passed through the encoder. A classification head on the first-token vector (dense layer, tanh, dropout, linear layer) outputs three scores. The head starts from random weights and the whole network is fine-tuned with cross-entropy loss.
+Each tweet is tokenised and passed through the encoder. A classification head on the first-token vector (dense layer, tanh, dropout, linear layer) outputs three scores. The head starts from random weights, and the whole network is fine-tuned with cross-entropy loss.
 
-**Training settings** (same for every run except the learning rate): AdamW with weight decay 0.01, linear learning-rate decay, batch size 16, 5 epochs, max length 128, seed 42, Hugging Face `Trainer` on a free Colab T4 GPU. After each epoch I evaluated on the validation split and kept the checkpoint with the **best validation macro-F1**.
+**Training settings** (same for every run except the learning rate): AdamW with weight decay 0.01, linear learning-rate decay, batch size 16, 5 epochs, max length 128, seed 42, Hugging Face `Trainer` on a free Colab T4 GPU. After each epoch, I evaluated on the validation split and kept the checkpoint with the **best validation macro-F1**.
 
 **Metrics.** Accuracy and **macro-F1** on the test set, plus per-class precision and recall. Macro-F1 is my main metric because it gives every class equal weight, so a weak class like neutral cannot hide.
 
@@ -82,7 +80,7 @@ Each tweet is tokenised and passed through the encoder. A classification head on
 
 ## Error analysis
 
-I analysed the AfriBERTa model trained with learning rate 3e-5 (the one I deployed). It makes **1,240 errors** on 5,303 test tweets.
+I analysed the AfriBERTa model trained with a learning rate of 3e-5 (the one I deployed). It makes **1,240 errors** on 5,303 test tweets.
 
 | Class | Precision | Recall | F1 | Support |
 | --- | --- | --- | --- | --- |
