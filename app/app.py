@@ -31,7 +31,7 @@ if st.button("Classify") and text.strip():
         st.write(f"{icon} **{label}**: {score:.1%}")
 
 st.markdown("---")
-st.markdown("**Example sentences:**")
-st.markdown("- *Wannan aiki yana da kyau sosai* (positive)")
-st.markdown("- *Ba na son wannan hali* (negative)")
-st.markdown("- *An gudanar da taron a Abuja* (neutral)")
+st.markdown("**Example tweets from the NaijaSenti test set** (labels from the dataset):")
+st.markdown("- *PASTE POSITIVE TWEET* (positive)")
+st.markdown("- *PASTE NEUTRAL TWEET* (neutral)")
+st.markdown("- *PASTE NEGATIVE TWEET* (negative)")
