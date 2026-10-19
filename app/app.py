@@ -29,9 +29,5 @@ if st.button("Classify") and text.strip():
         score = r["score"]
         icon = {"positive": "🟢", "negative": "🔴", "neutral": "🟡"}.get(label.lower(), "⚪")
         st.write(f"{icon} **{label}**: {score:.1%}")
-
 st.markdown("---")
-st.markdown("**Example tweets from the NaijaSenti test set** (labels from the dataset):")
-st.markdown("- *PASTE POSITIVE TWEET* (positive)")
-st.markdown("- *PASTE NEUTRAL TWEET* (neutral)")
-st.markdown("- *PASTE NEGATIVE TWEET* (negative)")
+st.markdown("Try a Hausa tweet in the box above.")
